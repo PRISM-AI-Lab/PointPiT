@@ -1,0 +1,1 @@
+from .pointpit import SceneAwareStructuralAdapter

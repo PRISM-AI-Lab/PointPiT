@@ -1,0 +1,28 @@
+# Datasets, checkpoints, and experiment artifacts
+data/
+pretrained/
+weights/
+exp/
+outputs/
+*.pth
+*.pt
+*.ckpt
+
+# Native extensions and build products
+**/build/
+**/dist/
+**/*.egg-info/
+*.so
+
+# Python and editor files
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.idea/
+.vscode/
+.DS_Store
+
+# Logs
+*.log
+wandb/
