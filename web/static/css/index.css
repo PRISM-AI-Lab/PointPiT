@@ -306,6 +306,21 @@ body {
   margin-bottom: 0.55rem;
 }
 
+.results-detail-figure {
+  width: 112%;
+  margin-left: -6%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.results-detail-figure a {
+  display: block;
+}
+.results-detail-figure img {
+  width: 100%;
+  max-width: none;
+  cursor: zoom-in;
+}
+
 .bibtex-header {
   display: flex;
   margin-bottom: 1rem;
@@ -462,6 +477,13 @@ a:focus {
   .method-figure {
     width: 100%;
     margin-left: 0;
+  }
+  .results-detail-figure {
+    width: 100%;
+    margin-left: 0;
+  }
+  .results-detail-figure img {
+    width: 720px;
   }
   .narrow-figure img {
     width: 88%;
