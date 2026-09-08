@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>
+      PointPiT: Parameter-Efficient Fine-Tuning for 3D Scene Understanding
+    </title>
+    <meta
+      name="title"
+      content="PointPiT: Parameter-Efficient Fine-Tuning for 3D Scene Understanding"
+    />
+    <meta
+      name="description"
+      content="PointPiT is a partition-invariant tuning framework for parameter-efficient adaptation of pretrained 3D point-cloud foundation models."
+    />
+    <meta
+      name="keywords"
+      content="PointPiT, point cloud, 3D semantic segmentation, parameter-efficient fine-tuning, PTv3, Sonata"
+    />
+    <meta name="author" content="PointPiT Team" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#2563eb" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="PointPiT" />
+    <meta
+      property="og:title"
+      content="PointPiT: Parameter-Efficient Fine-Tuning for 3D Scene Understanding"
+    />
+    <meta
+      property="og:description"
+      content="Partition-invariant tuning for efficient 3D scene understanding."
+    />
+    <meta
+      property="og:image"
+      content="static/images/partition_sensitivity.png"
+    />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="PointPiT" />
+    <meta
+      name="twitter:description"
+      content="Partition-invariant tuning for efficient 3D scene understanding."
+    />
+    <meta
+      name="twitter:image"
+      content="static/images/partition_sensitivity.png"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="static/images/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="static/css/bulma.min.css" />
+    <link rel="stylesheet" href="static/css/index.css" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ScholarlyArticle",
+        "headline": "Parameter-Efficient Fine-Tuning for 3D Scene Understanding",
+        "description": "PointPiT is a partition-invariant tuning framework for scene-level point clouds.",
+        "author": { "@type": "Organization", "name": "PointPiT Team" },
+        "datePublished": "2026",
+        "isAccessibleForFree": true,
+        "codeRepository": "https://github.com/PRISM-AI-Lab/PointPiT",
+        "keywords": [
+          "point cloud",
+          "3D semantic segmentation",
+          "parameter-efficient fine-tuning"
+        ]
+      }
+    </script>
+  </head>
+
+  <body>
+    <button
+      class="scroll-to-top"
+      type="button"
+      title="Scroll to top"
+      aria-label="Scroll to top"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="m6.7 14.7 5.3-5.3 5.3 5.3 1.4-1.4L12 6.6l-6.7 6.7z" />
+      </svg>
+    </button>
+
+    <main id="main-content">
+      <section class="hero publication-header">
+        <div class="hero-body">
+          <div class="container is-max-desktop">
+            <div class="columns is-centered">
+              <div class="column has-text-centered">
+                <p class="project-mark">PointPiT</p>
+                <h1 class="title is-1 publication-title">
+                  Parameter-Efficient Fine-Tuning for 3D Scene Understanding
+                </h1>
+
+                <div class="is-size-5 publication-authors">
+                  <span class="author-block">
+                    <a
+                      href="https://github.com/gzhhhhhhh"
+                      target="_blank"
+                      rel="noopener"
+                      >PointPiT Team</a
+                    >
+                  </span>
+                </div>
+
+                <div class="is-size-5 publication-authors publication-meta">
+                  <span class="author-block"
+                    >Partition-Invariant Tuning for Scene-level Point Clouds<br />ICASSP
+                    2027</span
+                  >
+                </div>
+
+                <div class="column has-text-centered publication-actions">
+                  <div class="publication-links">
+                    <span class="link-block">
+                      <a
+                        href="static/PointPiT.pdf"
+                        target="_blank"
+                        class="external-link button is-normal is-rounded is-dark"
+                      >
+                        <span class="button-icon" aria-hidden="true">
+                          <svg viewBox="0 0 24 24">
+                            <path
+                              d="M6 2h8l4 4v16H6zm7 1.5V7h3.5zM8 11v2h8v-2zm0 4v2h8v-2z"
+                            />
+                          </svg>
+                        </span>
+                        <span>Paper</span>
+                      </a>
+                    </span>
+                    <span class="link-block">
+                      <a
+                        href="https://github.com/PRISM-AI-Lab/PointPiT"
+                        target="_blank"
+                        rel="noopener"
+                        class="external-link button is-normal is-rounded is-dark"
+                      >
+                        <span class="button-icon" aria-hidden="true">
+                          <svg viewBox="0 0 24 24">
+                            <path
+                              d="M12 .8A11.2 11.2 0 0 0 8.5 22.6c.6.1.8-.2.8-.6v-2.2c-3.4.7-4.1-1.4-4.1-1.4-.5-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.9 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2V22c0 .4.2.7.8.6A11.2 11.2 0 0 0 12 .8"
+                            />
+                          </svg>
+                        </span>
+                        <span>Code</span>
+                      </a>
+                    </span>
+                    <span class="link-block">
+                      <a
+                        href="#BibTeX"
+                        class="external-link button is-normal is-rounded is-dark"
+                      >
+                        <span
+                          class="button-icon button-icon-text"
+                          aria-hidden="true"
+                          >{ }</span
+                        >
+                        <span>BibTeX</span>
+                      </a>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section hero is-light" id="abstract">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered has-text-centered">
+            <div class="column is-four-fifths">
+              <h2 class="title is-3">Abstract</h2>
+              <div class="content has-text-justified compact-copy">
+                <p>
+                  Scene-level point cloud understanding remains challenging due
+                  to diverse geometries and spatial layouts. While pre-trained
+                  3D point cloud foundation models offer strong transferability,
+                  full fine-tuning incurs substantial computational and storage
+                  costs. Existing parameter-efficient fine-tuning methods
+                  largely focus on object-level point clouds and overlook
+                  serialization-induced partition variations in large-scale
+                  scenes.
+                </p>
+                <p>
+                  We propose <strong>PointPiT</strong>, a partition-invariant
+                  tuning framework for scene-level point clouds. A
+                  <strong>Scene-aware Structural Adapter (SSA)</strong>
+                  integrates local geometric patterns with global scene context
+                  to mitigate partition-induced representation shifts.
+                  <strong>Gradient Subspace Optimization (GSO)</strong> selects
+                  informative and partition-stable update directions,
+                  suppressing partition-dependent variations during
+                  optimization.
+                </p>
+                <p>
+                  Across multiple scene-level benchmarks, PointPiT achieves
+                  competitive or superior performance to full fine-tuning with
+                  less than 1% of the backbone parameters, while consistently
+                  outperforming representative PEFT methods.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section hero is-light" id="method">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered has-text-centered">
+            <div class="column is-four-fifths">
+              <h2 class="title is-3">Method</h2>
+              <div class="content has-text-justified">
+                <p>
+                  PointPiT addresses partition sensitivity from two
+                  complementary directions. SSA stabilizes forward
+                  representations by fusing local bottleneck features with
+                  global scene context, while GSO constrains backward updates to
+                  the leading eigenspace of the Fisher information after
+                  penalizing partition-dependent gradient covariance.
+                </p>
+              </div>
+              <figure class="paper-figure method-figure">
+                <img
+                  src="static/images/pipeline.png"
+                  alt="PointPiT pipeline with serialization, grouping, SSA and GSO"
+                  width="1788"
+                  height="441"
+                />
+                <figcaption>
+                  Overview of PointPiT. Snowflakes indicate frozen modules and
+                  flames indicate trainable components.
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hero is-small" id="partition-analysis">
+        <div class="hero-body">
+          <div class="container">
+            <h2 class="title is-3 has-text-centered">Partition Sensitivity</h2>
+            <div class="columns is-centered">
+              <div class="column is-10">
+                <figure class="paper-figure narrow-figure">
+                  <img
+                    src="static/images/partition_sensitivity.png"
+                    alt="Comparison of semantic prediction differences across two point-cloud partitions"
+                    width="699"
+                    height="423"
+                    loading="lazy"
+                  />
+                </figure>
+                <div class="content has-text-justified figure-copy">
+                  <p>
+                    The same physical scene can produce different local
+                    neighborhoods under valid serialization partitions. Linear
+                    probing and LoRA inherit or amplify these changes, whereas
+                    PointPiT produces substantially more consistent semantic
+                    predictions across partitions.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section hero is-light" id="results">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered has-text-centered">
+            <div class="column is-four-fifths results-column">
+              <h2 class="title is-3">Experimental Results</h2>
+              <div class="content has-text-justified">
+                <p>
+                  We evaluate PointPiT on four indoor scene segmentation
+                  benchmarks using a Sonata-pretrained PTv3 backbone. PointPiT
+                  trains only 1.08M parameters and consistently improves over
+                  linear probing and existing point-cloud PEFT methods.
+                </p>
+
+                <h3 class="title is-4 has-text-centered">
+                  Scene-level Semantic Segmentation
+                </h3>
+                <div class="table-container">
+                  <table
+                    class="table is-bordered is-striped is-narrow is-hoverable results-table"
+                  >
+                    <thead>
+                      <tr>
+                        <th scope="col">Dataset</th>
+                        <th scope="col">Method</th>
+                        <th scope="col">Param.</th>
+                        <th scope="col">mAcc</th>
+                        <th scope="col">allAcc</th>
+                        <th scope="col">mIoU</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td rowspan="3"><strong>ScanNet Val</strong></td>
+                        <td>Sonata (lin.)</td>
+                        <td>0.02M</td>
+                        <td>83.1</td>
+                        <td>–</td>
+                        <td>72.2</td>
+                      </tr>
+                      <tr>
+                        <td>PointTPA</td>
+                        <td>1.18M</td>
+                        <td>86.3</td>
+                        <td>–</td>
+                        <td>78.4</td>
+                      </tr>
+                      <tr class="ours-row">
+                        <td><strong>PointPiT (Ours)</strong></td>
+                        <td><strong>1.08M</strong></td>
+                        <td><strong>86.7</strong></td>
+                        <td>–</td>
+                        <td><strong>78.9</strong></td>
+                      </tr>
+                      <tr class="ours-row">
+                        <td><strong>S3DIS Area 5</strong></td>
+                        <td><strong>PointPiT</strong></td>
+                        <td>1.08M</td>
+                        <td>82.3</td>
+                        <td>93.3</td>
+                        <td>75.0</td>
+                      </tr>
+                      <tr class="ours-row">
+                        <td><strong>S3DIS 6-fold</strong></td>
+                        <td><strong>PointPiT</strong></td>
+                        <td>1.08M</td>
+                        <td>90.2</td>
+                        <td>93.6</td>
+                        <td>80.6</td>
+                      </tr>
+                      <tr class="ours-row">
+                        <td><strong>ScanNet200 Val</strong></td>
+                        <td><strong>PointPiT</strong></td>
+                        <td>1.08M</td>
+                        <td>49.0</td>
+                        <td>84.8</td>
+                        <td>38.1</td>
+                      </tr>
+                      <tr class="ours-row">
+                        <td><strong>ScanNet++ Val</strong></td>
+                        <td><strong>PointPiT</strong></td>
+                        <td>1.08M</td>
+                        <td>56.4</td>
+                        <td>87.0</td>
+                        <td>44.2</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <h3 class="title is-4">Key Findings</h3>
+                <ul class="key-findings">
+                  <li>
+                    <strong>Parameter efficient:</strong> 1.08M trainable
+                    parameters, only 0.99% of the frozen backbone.
+                  </li>
+                  <li>
+                    <strong>Partition robust:</strong> consistently strong
+                    results across Z-order, Hilbert, Trans-Z, and Trans-H
+                    serialization.
+                  </li>
+                  <li>
+                    <strong>Complementary design:</strong> SSA and GSO improve
+                    ScanNet mIoU individually and reach 78.9% when combined.
+                  </li>
+                  <li>
+                    <strong>Cross-benchmark gains:</strong> state-of-the-art
+                    PEFT performance across four large-scale indoor benchmarks.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hero is-small" id="qualitative-results">
+        <div class="hero-body">
+          <div class="container">
+            <h2 class="title is-3 has-text-centered">Qualitative Results</h2>
+            <div class="columns is-centered">
+              <div class="column is-11">
+                <figure class="paper-figure qualitative-figure">
+                  <img
+                    src="static/images/qualitative_results.png"
+                    alt="Semantic segmentation comparison on S3DIS and ScanNet"
+                    width="1596"
+                    height="522"
+                    loading="lazy"
+                  />
+                </figure>
+                <div class="content has-text-justified figure-copy wide-copy">
+                  <p>
+                    Compared with full fine-tuning, PointPiT generates accurate
+                    and structurally consistent predictions in complex indoor
+                    regions. The improvement maps highlight corrected semantic
+                    regions on S3DIS Area 5 and ScanNet.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="BibTeX">
+        <div class="container is-max-desktop content">
+          <div class="bibtex-header">
+            <h2 class="title">BibTeX</h2>
+            <button
+              class="copy-bibtex-btn"
+              type="button"
+              title="Copy BibTeX to clipboard"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M8 7V3h11v14h-4v4H4V7zm2-2v2h5v8h2V5zm-4 4v10h7V9z" />
+              </svg>
+              <span class="copy-text">Copy</span>
+            </button>
+          </div>
+          <pre id="bibtex-code"><code>@inproceedings{pointpit2027,
+  title     = {Parameter-Efficient Fine-Tuning for 3D Scene Understanding},
+  author    = {Anonymous},
+  booktitle = {IEEE International Conference on Acoustics,
+               Speech and Signal Processing (ICASSP)},
+  year      = {2027},
+  url       = {https://github.com/PRISM-AI-Lab/PointPiT}
+}</code></pre>
+        </div>
+      </section>
+
+      <section class="section hero is-light project-note">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered has-text-centered">
+            <div class="column is-four-fifths">
+              <div class="content has-text-justified">
+                <p><strong>Acknowledgements</strong></p>
+                <p>
+                  This project is built on Pointcept, Point Transformer V3, and
+                  Sonata. We thank the authors of these projects and the broader
+                  3D vision community for making their work publicly available.
+                </p>
+                <p class="fine-print">
+                  This page accompanies the PointPiT research code release.
+                  Final author, proceedings, arXiv, and DOI metadata will be
+                  added when the public paper record is available.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="static/js/index.js"></script>
+  </body>
+</html>

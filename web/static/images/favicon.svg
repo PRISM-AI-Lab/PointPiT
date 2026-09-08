@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="PointPiT">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#2563eb"/>
+      <stop offset="1" stop-color="#764ba2"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="15" fill="url(#g)"/>
+  <circle cx="19" cy="17" r="3" fill="#fff" opacity=".75"/>
+  <circle cx="48" cy="13" r="2" fill="#fff" opacity=".55"/>
+  <circle cx="50" cy="48" r="3" fill="#fff" opacity=".6"/>
+  <path d="M20 48V16h15.5C43 16 48 20.2 48 27s-5 11-12.5 11H28v10zm8-17h7c3.1 0 5-1.5 5-4s-1.9-4-5-4h-7z" fill="#fff"/>
+</svg>
