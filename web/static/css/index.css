@@ -306,9 +306,9 @@ body {
   margin-bottom: 0.55rem;
 }
 
-.results-detail-figure {
+#method-comparison .results-detail-figure {
   width: 112%;
-  margin-left: -6%;
+  margin: 2rem -6% 0;
   overflow-x: auto;
   overflow-y: hidden;
 }
@@ -478,9 +478,9 @@ a:focus {
     width: 100%;
     margin-left: 0;
   }
-  .results-detail-figure {
+  #method-comparison .results-detail-figure {
     width: 100%;
-    margin-left: 0;
+    margin: 2rem 0 0;
   }
   .results-detail-figure img {
     width: 720px;
