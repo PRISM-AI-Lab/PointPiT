@@ -170,12 +170,6 @@ body {
   height: 100%;
   fill: currentColor;
 }
-.button-icon-text {
-  font-family: ui-monospace, monospace;
-  font-size: 0.83rem;
-  font-weight: 800;
-}
-
 .title.is-3 {
   position: relative;
   margin-bottom: 2rem !important;
