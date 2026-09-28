@@ -3,7 +3,7 @@
 # Partition-invariant Tuning for 3D Scene Understanding
 
 <p align="center">
-  <a href="https://arxiv.org/abs/2605.03438"><img src="https://img.shields.io/badge/arXiv-Paper-b31b1b.svg" alt="arXiv"></a>
+  <a href="https://arxiv.org/abs/2609.12473"><img src="https://img.shields.io/badge/arXiv-Paper-b31b1b.svg" alt="arXiv"></a>
   <a href="./LICENSE"><img src="https://img.shields.io/badge/Code%20License-Apache--2.0-green.svg" alt="Code License"></a>
 </p>
 
@@ -57,6 +57,7 @@ cd PointPiT
 conda env create -f environment.yml
 conda activate PointPiT
 ```
+
 
 The environment file builds the bundled PointOps extensions. If the automatic
 build is interrupted, install them manually after activating the environment:
@@ -197,16 +198,11 @@ projects.
 
 If you find this repository useful in your research, please consider giving a star ⭐ and a citation.
 
-<!-- 以下段落暂不发布，先注释掉
-这是被注释的内容，包括 *斜体* 和 **粗体** 都不会渲染。
-
-
 ```bibtex
-@inproceedings{pointpit2027,
-  title     = {Parameter-Efficient Fine-Tuning for 3D Scene Understanding},
-  author    = {Anonymous},
-  booktitle = {IEEE International Conference on Acoustics, Speech and Signal Processing},
-  year      = {2027}
+@article{lin2026partition,
+  title={Partition-Invariant Tuning for 3D Scene Understanding},
+  author={Lin, Hongqiang and Wang, Tianle and Li, Shuiwang and Zhang, Dongxu and Sun, Yiding and Guo, Zihao and Yin, Dongfu},
+  journal={arXiv preprint arXiv:2609.12473},
+  year={2026}
 }
 ```
--->
